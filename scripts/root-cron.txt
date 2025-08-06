@@ -1,0 +1,21 @@
+@reboot /usr/sbin/koha-start-sip library
+20 17 * * * /home/library/scripts/koha_backup.sh
+
+KOHA_CRON_PATH=/usr/share/koha/bin/cronjobs
+
+PERL5LIB=/usr/share/koha/lib
+KOHA_CONF=/etc/koha/sites/library/koha-conf.xml
+
+# ADVANCE NOTICES
+10 15 * * *  $KOHA_CRON_PATH/advance_notices.pl -c  >> /var/log/koha/cron/advance-notices.log 2>&1
+
+# SERIALS UPDATE
+18 15 * * * $KOHA_CRON_PATH/serialsUpdate.pl -c
+
+# SEND EMAILS
+*/5 * * * *   $KOHA_CRON_PATH/process_message_queue.pl >> /var/log/koha/cron/message-queue.log 2>&1
+
+# OVERDUE NOTICES
+8 15 * * *  $KOHA_CRON_PATH/overdue_notices.pl -t  >> /var/log/koha/cron/overdue-messages.log 2>&1
+
+
