@@ -1,5 +1,5 @@
 @reboot /usr/sbin/koha-start-sip library
-20 17 * * * /home/library/scripts/koha_backup.sh
+20 17 * * * /home/library/scripts/db_backup.sh
 
 KOHA_CRON_PATH=/usr/share/koha/bin/cronjobs
 
